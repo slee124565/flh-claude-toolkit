@@ -22,4 +22,4 @@
 
 如果你要的是知識庫工作流，而不是工作站設定，請看：
 
-- [llm-wiki-kb](../../llm-wiki-kb/README.md)
+- [llm-wiki-kb](https://github.com/slee124565/llm-wiki-kb/blob/main/README.md)

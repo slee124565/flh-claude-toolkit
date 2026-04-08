@@ -46,7 +46,7 @@
 順序是：
 
 1. 先用 `flh-claude-toolkit` 把工作站設好
-2. 再到 [`llm-wiki-kb`](../llm-wiki-kb/README.md) 開始與 Claude 協作沉澱工作知識
+2. 再到 [`llm-wiki-kb`](https://github.com/slee124565/llm-wiki-kb/blob/main/README.md) 開始與 Claude 協作沉澱工作知識
 
 ## Repo 邊界
 

@@ -37,6 +37,6 @@
 
 就可以前往：
 
-- [llm-wiki-kb](../llm-wiki-kb/README.md)
+- [llm-wiki-kb](https://github.com/slee124565/llm-wiki-kb/blob/main/README.md)
 
 在那裡開始把工作知識整理進知識庫。
