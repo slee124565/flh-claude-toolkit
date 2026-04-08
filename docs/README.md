@@ -1,6 +1,6 @@
 # docs
 
-Store stable workstation setup and troubleshooting guides here.
+Stable workstation setup and troubleshooting guides live here.
 
 Recommended starting points:
 
@@ -12,4 +12,4 @@ Recommended starting points:
 - [setup-terminal-mcp.md](setup-terminal-mcp.md)
 - [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
 
-These setup docs were migrated out of `publishes/llm-wiki-kb` so that `llm-wiki-kb` can stay focused on wiki operating model rather than local workstation installation details.
+If you need knowledge-base workflow guidance instead of workstation setup, go to [`llm-wiki-kb`](../../llm-wiki-kb/README.md).
