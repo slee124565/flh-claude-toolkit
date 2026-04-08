@@ -2,12 +2,20 @@
 
 這個 repo 的主題不是內容知識庫，而是 Claude 工作站設定與工具文件。
 
+對象預設是公司內的非工程同仁，因此文件主線應先服務：
+
+- GUI app 可用
+- 必要 CLI 工具可用
+- 公司工作工具可接到 Claude
+
+而不是先服務 GitHub 進階操作。
+
 ## Source-of-truth 分工
 
 - `README.md`
   人類入口頁，說明 repo purpose、使用情境與和其他 repo 的分工
 - `QUICKSTART.md`
-  第一次使用者的線性 onboarding 路徑
+  第一次使用者的線性 onboarding 路徑，應區分必要安裝與進階選配
 - `docs/`
   穩定的安裝、設定、驗收、排查文件
 
@@ -16,7 +24,10 @@
 這裡應收：
 
 - local environment prerequisites
+- required workstation apps
 - CLI setup
+- required company work tools
+- optional advanced tools
 - MCP setup
 - troubleshooting
 - 驗收與 quickstart 路徑

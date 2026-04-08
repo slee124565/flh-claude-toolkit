@@ -30,6 +30,12 @@
 - macOS 可使用 Homebrew：`brew install googleworkspace-cli`
 - OAuth 需要 Google Cloud project 與對應 credentials
 
+在這個 repo 的標準安裝順序裡，建議先確認：
+
+- [setup-homebrew.md](setup-homebrew.md)
+- [setup-nodejs.md](setup-nodejs.md)
+- [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
+
 官方 MCP 文件另外說明：
 
 - Claude Desktop 的設定檔在 macOS 路徑是：
@@ -105,6 +111,17 @@ npm install -g @googleworkspace/cli
 如果你的電腦還沒有 Homebrew，先看：
 
 - [setup-homebrew.md](setup-homebrew.md)
+
+如果你打算用 npm 安裝，請先確認：
+
+```bash
+node --version
+npm --version
+```
+
+如果沒有版本號，先看：
+
+- [setup-nodejs.md](setup-nodejs.md)
 
 ## Step By Step 登入
 

@@ -11,7 +11,7 @@
 
 ## 什麼時候需要 Claude Code CLI
 
-如果你主要只想在 GUI 裡整理文件，`Claude Desktop App` 就夠用。
+如果你主要只想在 GUI 裡整理文件，先完成 `Claude Desktop App` 就夠用。
 
 如果你希望 agent 幫你做更多本機操作，建議再安裝 `Claude Code CLI`：
 
@@ -19,6 +19,11 @@
 - 幫你修改 Markdown 檔案
 - 幫你驗證 repo 結構
 - 幫你做更完整的 setup / repair workflow
+
+對多數公司同事，建議順序是：
+
+1. 先完成 [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
+2. 再安裝 `Claude Code CLI`
 
 ## 官方前提
 
@@ -69,7 +74,7 @@ claude --version
 
 ### 3. 進入你的 repo
 
-先切換到 `llm-wiki-kb` 的資料夾，例如：
+先切換到你的 repo 資料夾，例如 `llm-wiki-kb`：
 
 ```bash
 cd ~/llm-wiki-kb

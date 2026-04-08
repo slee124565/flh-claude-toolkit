@@ -1,11 +1,16 @@
 # GitHub gh CLI Setup Guide
 
-這份文件用來協助非工程同仁在 Mac 上安裝 GitHub 官方的 `gh` CLI。
+這份文件用來協助公司同事在 Mac 上安裝 GitHub 官方的 `gh` CLI。
 
-在這個 repo 的 rollout 流程裡，`gh` 最常用在兩件事：
+`gh` 是 GitHub 進階操作工具，不是這個 repo 的必要安裝項目。
 
-- 把 `llm-wiki-kb` clone 到本機
-- 讓 agent 幫你檢查 GitHub repo 或 pull request 相關資訊
+如果你只是要 clone public GitHub repo，先用 `git clone` 就夠了。
+
+在這個 repo 的 rollout 流程裡，`gh` 最常用在這些情境：
+
+- 存取 private GitHub repo
+- 讓 agent 幫你檢查 GitHub repo、pull request 或 issue 相關資訊
+- 在本機做較完整的 GitHub 帳號操作
 
 ## 先做什麼檢查
 
@@ -19,13 +24,28 @@ gh --version
 
 如果看到 `command not found`，代表還沒裝好。
 
+## 先確認你是不是真的需要 `gh`
+
+如果你的需求只是：
+
+- clone public repo
+- 在本機閱讀 Markdown 或整理知識庫
+
+你可以先不要裝 `gh`。
+
+先完成：
+
+- [setup-git-cli.md](setup-git-cli.md)
+
+只有在要做 private repo、PR、issue 或 GitHub 登入操作時，再回來安裝 `gh`。
+
 ## 安裝前提
 
 建議你先完成：
 
 - [mac-terminal-basics.md](mac-terminal-basics.md)
 
-如果你前面已經裝好 Node.js，也很好，但 `gh` 不一定依賴 Node.js 才能安裝。
+如果你前面已經裝好 Homebrew，會比較方便。
 
 ## 建議安裝方式
 
@@ -51,7 +71,7 @@ brew install gh
 gh --version
 ```
 
-如果有版本號，就可以直接跳到後面的登入或 clone repo。
+如果有版本號，就可以直接跳到後面的登入或進階使用。
 
 ### 2. 安裝 `gh`
 
@@ -104,27 +124,22 @@ gh --version
 gh auth status
 ```
 
-## 用 `gh` clone `llm-wiki-kb`
+## `gh` 與 `git` 的分工
 
-如果你要把這個 repo 抓到本機，可以執行：
-
-```bash
-gh repo clone slee124565/llm-wiki-kb
-```
-
-完成後，進入資料夾：
+如果你只是要把 public repo 抓到本機，請先用：
 
 ```bash
-cd llm-wiki-kb
-ls
+git clone https://github.com/slee124565/llm-wiki-kb.git
 ```
 
-你應該至少會看到：
+只有在你想用 GitHub 帳號能力做更進階的事時，再用 `gh`。
 
-- `raw`
-- `wiki`
-- `index.md`
-- `log.md`
+例如：
+
+```bash
+gh auth login
+gh repo view slee124565/llm-wiki-kb
+```
 
 ## 常見問題
 
@@ -154,14 +169,14 @@ gh --version
 gh auth login
 ```
 
-### `gh repo clone` 失敗
+### `gh repo view` 或其他 `gh` 指令失敗
 
 先把完整錯誤訊息貼回 agent。
 
 常見原因包括：
 
 - 網路問題
-- 尚未登入但目標 repo 不是公開的
+- 尚未登入但目標資源不是公開的
 - repo 名稱打錯
 
 ## Agent-Assisted 安裝 Prompt
@@ -169,7 +184,7 @@ gh auth login
 如果你想讓 Claude、Codex 或其他 agent 帶你安裝，可以直接貼這段：
 
 ```text
-請幫我在這台 Mac 上安裝 GitHub `gh` CLI，並確認我可以用它 clone `slee124565/llm-wiki-kb`。
+請幫我在這台 Mac 上安裝 GitHub `gh` CLI，並確認我可以用它做 GitHub 進階操作。
 我是非工程使用者，對 Terminal 不熟。
 
 請用繁體中文一步一步帶我做，而且每一步都要：
@@ -181,5 +196,5 @@ gh auth login
 目標是完成以下驗收：
 - `gh --version` 成功
 - 如果需要，`gh auth login` 可完成
-- `gh repo clone slee124565/llm-wiki-kb` 成功
+- 我知道什麼情況下該用 `git`，什麼情況下才需要 `gh`
 ```

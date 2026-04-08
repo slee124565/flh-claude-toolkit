@@ -12,8 +12,10 @@ Use this before treating `flh-claude-toolkit` as a publishable repo.
 ## Setup Coverage
 
 - [ ] `docs/mac-terminal-basics.md` is present
+- [ ] `docs/setup-git-cli.md` is present
 - [ ] `docs/setup-homebrew.md` is present
 - [ ] `docs/setup-nodejs.md` is present
+- [ ] `docs/setup-claude-desktop-app.md` is present
 - [ ] `docs/setup-github-gh-cli.md` is present
 - [ ] `docs/setup-claude-code-cli.md` is present
 - [ ] `docs/setup-terminal-mcp.md` is present
@@ -31,9 +33,11 @@ Use this before treating `flh-claude-toolkit` as a publishable repo.
 - [ ] Canonical GitHub repo exists or the publish plan is explicitly recorded
 - [ ] If this repo is synced as a subtree, the upstream remote is configured
 - [ ] The first user-facing setup path can be followed end to end without engineer context
+- [ ] `gh` is clearly presented as an advanced GitHub option rather than the default clone path
 
 ## Final Review
 
 - [ ] A non-engineer can tell when to use this repo and when to use `llm-wiki-kb`
 - [ ] The install order is beginner-friendly and consistent
 - [ ] Troubleshooting steps point to the right file without circular redirects
+- [ ] Required company-workstation tools and optional advanced tools are clearly separated

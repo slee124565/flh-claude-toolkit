@@ -62,10 +62,12 @@ Control + C
 ### 檢查工具有沒有裝好
 
 ```bash
+git --version
 brew --version
 node --version
 npm --version
 npx --version
+claude
 claude --version
 gws --version
 gh --version
@@ -73,10 +75,14 @@ gh --version
 
 如果工具有問題，可以直接看這些對應文件：
 
+- `git --version` 失敗：
+  [setup-git-cli.md](setup-git-cli.md)
 - `brew --version` 失敗：
   [setup-homebrew.md](setup-homebrew.md)
 - `node --version`、`npm --version`、`npx --version` 失敗：
   [setup-nodejs.md](setup-nodejs.md)
+- Claude Desktop App 還沒裝好或打不開：
+  [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
 - `claude --version` 失敗：
   [setup-claude-code-cli.md](setup-claude-code-cli.md)
 - `gws --version` 失敗：
