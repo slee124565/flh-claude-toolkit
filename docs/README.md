@@ -1,15 +1,25 @@
 # docs
 
-Stable workstation setup and troubleshooting guides live here.
+這裡放穩定的工作站設定與故障排查文件。
 
-Recommended starting points:
+## 文件分組
 
-- [mac-terminal-basics.md](mac-terminal-basics.md)
-- [setup-homebrew.md](setup-homebrew.md)
-- [setup-nodejs.md](setup-nodejs.md)
-- [setup-github-gh-cli.md](setup-github-gh-cli.md)
-- [setup-claude-code-cli.md](setup-claude-code-cli.md)
-- [setup-terminal-mcp.md](setup-terminal-mcp.md)
-- [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
+- prerequisites
+  - [mac-terminal-basics.md](mac-terminal-basics.md)
+  - [setup-homebrew.md](setup-homebrew.md)
+  - [setup-nodejs.md](setup-nodejs.md)
+- local tooling
+  - [setup-github-gh-cli.md](setup-github-gh-cli.md)
+  - [setup-claude-code-cli.md](setup-claude-code-cli.md)
+- MCP
+  - [setup-terminal-mcp.md](setup-terminal-mcp.md)
+- Google Workspace
+  - [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
 
-If you need knowledge-base workflow guidance instead of workstation setup, go to [`llm-wiki-kb`](../../llm-wiki-kb/README.md).
+如果你是第一次使用這個 repo，先讀：
+
+- [../QUICKSTART.md](../QUICKSTART.md)
+
+如果你要的是知識庫工作流，而不是工作站設定，請看：
+
+- [llm-wiki-kb](../../llm-wiki-kb/README.md)

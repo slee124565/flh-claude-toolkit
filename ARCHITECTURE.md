@@ -1,11 +1,13 @@
 # ARCHITECTURE
 
-這個 repo 的主題不是內容知識庫，而是 agent-enabled local workstation。
+這個 repo 的主題不是內容知識庫，而是 Claude 工作站設定與工具文件。
 
 ## Source-of-truth 分工
 
 - `README.md`
-  對外說明 repo purpose、閱讀順序與和其他 repo 的分工
+  人類入口頁，說明 repo purpose、使用情境與和其他 repo 的分工
+- `QUICKSTART.md`
+  第一次使用者的線性 onboarding 路徑
 - `docs/`
   穩定的安裝、設定、驗收、排查文件
 
@@ -17,7 +19,7 @@
 - CLI setup
 - MCP setup
 - troubleshooting
-- rollout 順序
+- 驗收與 quickstart 路徑
 
 這裡不應收：
 

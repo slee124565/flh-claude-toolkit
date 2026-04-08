@@ -2,40 +2,45 @@
 
 ## Purpose
 
-This repo is maintained as a workstation onboarding toolkit, not a knowledge base.
+This repo is maintained as a workstation setup and troubleshooting documentation repo.
 
-Claude should act as a setup and troubleshooting guide for non-engineer users who need a usable local environment:
+Claude should treat this repository as the canonical home for:
 
-- install or verify core tools
-- check local prerequisites
-- connect Claude Desktop to local tooling
-- explain failures in plain language
-- keep setup docs stable and beginner-friendly
+- installation prerequisites
+- CLI setup instructions
+- MCP setup instructions
+- verification steps
+- concise troubleshooting notes
+
+The target reader may be non-engineer colleagues, but that is a writing constraint, not the repo's core identity.
 
 ## Read First
 
 1. `README.md`
 2. `ARCHITECTURE.md`
-3. `docs/README.md`
+3. `QUICKSTART.md`
+4. `docs/README.md`
 
 ## Core Rules
 
-- Treat this repo as the canonical home for workstation setup and troubleshooting.
+- Keep this repo focused on workstation setup and tooling prerequisites.
 - Keep `llm-wiki-kb` focused on knowledge base operating model and workflow.
+- Prefer maintaining stable docs over embedding setup logic in chat responses.
 - Prefer step-by-step instructions over large command bundles.
-- When a setup doc is moved, leave a short redirect stub in the old location until the migration is complete.
-- Use plain language and avoid assuming the reader already understands Terminal, shell paths, or MCP terminology.
+- Use plain language, but do not turn every document into a hand-holding tutorial.
+- Update verification and troubleshooting sections when setup assumptions change.
 
 ## File Responsibilities
 
-- `README.md`: overview, repo purpose, and cross-repo boundary
-- `ARCHITECTURE.md`: structure and source-of-truth rules
-- `docs/README.md`: stable setup entrypoints
-- `docs/*.md`: step-by-step installation, verification, and troubleshooting guides
+- `README.md`: human-facing repo overview and boundary
+- `QUICKSTART.md`: linear onboarding path for first-time users
+- `ARCHITECTURE.md`: source-of-truth and repo boundary rules
+- `docs/README.md`: documentation index
+- `docs/*.md`: stable setup, verification, and troubleshooting docs
 
 ## Operating Bias
 
-- Start with the smallest install that can work.
-- Prefer stable, beginner-friendly defaults.
-- Keep troubleshooting sections short and concrete.
-- Optimize for a clean handoff to a human who is not an engineer.
+- Keep docs short and durable.
+- Optimize for reuse across multiple coworkers.
+- Prefer explicit verification steps.
+- Treat audience friendliness as a style rule, not a reason to blur repo boundaries.
