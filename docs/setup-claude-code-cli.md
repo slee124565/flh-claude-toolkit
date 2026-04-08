@@ -104,6 +104,11 @@ claude doctor
 
 如果看到健康檢查結果，代表環境大致正常。
 
+如果你接下來想把 `Claude Code CLI` 接進 `Claude Desktop App`，讓 Claude Desktop 也能使用這組能力，下一步請看：
+
+- [setup-terminal-mcp.md](setup-terminal-mcp.md)
+- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+
 ## 最小使用方式
 
 進入 repo 後，啟動：

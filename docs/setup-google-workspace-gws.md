@@ -140,14 +140,50 @@ mkdir -p ~/.config/gws
 ~/.config/gws/client_secret.json
 ```
 
-4. 執行登入：
+如果你不熟 Terminal，可用下面任一種方式：
+
+- 方式 1：用 Finder 放檔
+  1. 在 Finder 上方選單點 `Go` -> `Go to Folder...`
+  2. 輸入：
+
+  ```text
+  ~/.config/gws
+  ```
+
+  3. 按 Enter
+  4. 把公司提供的 JSON 檔拖進這個資料夾
+  5. 如果檔名不是 `client_secret.json`，請改名成 `client_secret.json`
+
+- 方式 2：用 Terminal 複製檔案
+  1. 先把公司提供的 JSON 檔放到 `Downloads` 資料夾
+  2. 在 Terminal 執行：
+
+  ```bash
+  cp ~/Downloads/<公司提供的檔名>.json ~/.config/gws/client_secret.json
+  ```
+
+  3. 例如，如果下載的檔名是 `flh-gws-oauth.json`，指令會是：
+
+  ```bash
+  cp ~/Downloads/flh-gws-oauth.json ~/.config/gws/client_secret.json
+  ```
+
+4. 確認檔案真的在正確位置：
+
+```bash
+ls -l ~/.config/gws/client_secret.json
+```
+
+如果有看到檔案資訊，代表位置正確。
+
+5. 執行登入：
 
 ```bash
 gws auth login
 ```
 
-5. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
-6. 完成授權後，回到 Terminal
+6. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
+7. 完成授權後，回到 Terminal
 
 ### 路線 B：自己建立 OAuth client
 
@@ -159,8 +195,25 @@ gws auth login
 4. 把你自己的公司帳號加到 `Test users`
 5. 建立一個 `Desktop app` OAuth client
 6. 下載 JSON
-7. 存到 `~/.config/gws/client_secret.json`
-8. 執行：
+7. 在 Terminal 建立設定資料夾：
+
+```bash
+mkdir -p ~/.config/gws
+```
+
+8. 把下載的 JSON 存到：
+
+```text
+~/.config/gws/client_secret.json
+```
+
+9. 可用這個指令確認檔案位置正確：
+
+```bash
+ls -l ~/.config/gws/client_secret.json
+```
+
+10. 執行：
 
 ```bash
 gws auth login
@@ -192,6 +245,10 @@ macOS 路徑：
 
 如果檔案還不存在，可以建立一個新的。
 
+如果你不知道怎麼打開這個位置、建立檔案，或已經有別的 MCP server 不知道怎麼合併，先看：
+
+- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+
 ### 2. 先決定要暴露哪些服務
 
 官方文件建議從少量服務開始，避免工具太多。
@@ -217,7 +274,13 @@ macOS 路徑：
 }
 ```
 
-如果你也想把 Claude Code 自己的工具一起接進 Claude Desktop，可以用：
+如果你也想把 Claude Code 自己的工具一起接進 Claude Desktop，可以用下面這個合併範例。
+
+更完整的 `Claude Code as MCP server` 說明，請以這份為準：
+
+- [setup-terminal-mcp.md](setup-terminal-mcp.md)
+
+合併範例：
 
 ```json
 {
@@ -310,3 +373,8 @@ which gws
 1. `claude_desktop_config.json` 格式是否正確
 2. `gws` 指令在 Terminal 是否能正常執行
 3. Claude Desktop App 是否有完全重開
+
+如果你還是不確定問題在哪裡，回頭先看：
+
+- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- [workstation-final-check.md](workstation-final-check.md)

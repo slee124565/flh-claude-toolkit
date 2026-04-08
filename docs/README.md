@@ -17,6 +17,9 @@
   - [setup-github-gh-cli.md](setup-github-gh-cli.md)
 - MCP
   - [setup-terminal-mcp.md](setup-terminal-mcp.md)
+  - [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- verification
+  - [workstation-final-check.md](workstation-final-check.md)
 
 如果你是第一次使用這個 repo，先讀：
 

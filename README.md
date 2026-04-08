@@ -54,7 +54,7 @@
 
 ## 建議安裝主線
 
-對多數公司同事，建議先完成這條標準路徑：
+對多數公司同事，建議照這條標準路徑完成：
 
 1. 熟悉 Terminal 基本操作
 2. 確認 `git` CLI 可用
@@ -66,6 +66,8 @@
 8. 設定 terminal / MCP
 
 `gh` CLI 不在這條主線裡。
+
+完整線性步驟與最後驗收，請以 [QUICKSTART.md](QUICKSTART.md) 為準。
 
 如果你只是要 clone public GitHub repo，`git clone` 就夠用；只有在要做 private repo、PR、issue 或其他 GitHub 進階操作時，才需要再裝 `gh`。
 

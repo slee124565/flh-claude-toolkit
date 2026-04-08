@@ -65,6 +65,10 @@ macOS 路徑：
 ~/Library/Application Support/Claude/claude_desktop_config.json
 ```
 
+如果你不知道怎麼打開這個位置、建立檔案，或已經有別的 MCP server 不知道怎麼合併，先看：
+
+- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+
 ### 3. 把 Claude Code MCP server 加進設定檔
 
 加入這段：
@@ -122,6 +126,10 @@ macOS 路徑：
 ```
 
 如果 Claude 可以正常使用 Claude Code 提供的能力，代表 MCP 接法基本成功。
+
+如果你想把整條工作站主線一起驗收，接著看：
+
+- [workstation-final-check.md](workstation-final-check.md)
 
 ### 這條方案適合什麼情境
 

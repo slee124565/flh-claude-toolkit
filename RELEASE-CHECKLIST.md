@@ -20,6 +20,8 @@ Use this before treating `flh-claude-toolkit` as a publishable repo.
 - [ ] `docs/setup-claude-code-cli.md` is present
 - [ ] `docs/setup-terminal-mcp.md` is present
 - [ ] `docs/setup-google-workspace-gws.md` is present
+- [ ] `docs/edit-claude-desktop-config.md` is present
+- [ ] `docs/workstation-final-check.md` is present
 
 ## Boundary Checks
 

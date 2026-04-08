@@ -34,10 +34,11 @@
 6. [docs/setup-claude-code-cli.md](docs/setup-claude-code-cli.md)
 7. [docs/setup-google-workspace-gws.md](docs/setup-google-workspace-gws.md)
 8. [docs/setup-terminal-mcp.md](docs/setup-terminal-mcp.md)
+9. [docs/workstation-final-check.md](docs/workstation-final-check.md)
 
 進階選配：
 
-9. [docs/setup-github-gh-cli.md](docs/setup-github-gh-cli.md)
+10. [docs/setup-github-gh-cli.md](docs/setup-github-gh-cli.md)
 
 ## 完成後做什麼
 
