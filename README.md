@@ -1,55 +1,57 @@
 # flh-claude-toolkit
 
-`flh-claude-toolkit` is a private FLH onboarding toolkit for setting up a Mac so non-engineer colleagues can work with Claude and related local tools without having to learn the full terminal stack first.
+這是 FLH 內部給非工程同仁使用的 Claude 工作站入門工具包。
 
-Use this repo when the problem is setup, not knowledge modeling:
+它的用途是先把一台 Mac 設成可與 Claude 和本機工具協作的環境，處理的是 setup，不是知識庫架構設計。
 
-- Terminal basics
+適合用在這些情境：
+
+- Terminal 還不熟
+- 工具還沒裝好
+- `command not found`、登入失敗、MCP 設定不順
+- 想用 Claude Desktop、Claude Code CLI、`gh`、`gws` 協助完成日常工作
+
+## 這裡放什麼
+
+- Terminal 基本操作
 - Homebrew
 - Node.js
 - GitHub `gh` CLI
 - Claude Desktop App
 - Claude Code CLI
-- MCP setup
+- MCP 設定
 - Google Workspace `gws` CLI / MCP
 
-## What this repo is for
+## 先看哪裡
 
-This repo is the starting point when you need help with:
+1. [docs/mac-terminal-basics.md](docs/mac-terminal-basics.md)
+2. [docs/setup-homebrew.md](docs/setup-homebrew.md)
+3. [docs/setup-nodejs.md](docs/setup-nodejs.md)
+4. [docs/setup-github-gh-cli.md](docs/setup-github-gh-cli.md)
+5. [docs/setup-claude-code-cli.md](docs/setup-claude-code-cli.md)
+6. [docs/setup-terminal-mcp.md](docs/setup-terminal-mcp.md)
+7. [docs/setup-google-workspace-gws.md](docs/setup-google-workspace-gws.md)
 
-- a tool that is not installed yet
-- a `command not found` error
-- Claude Desktop not seeing local tools
-- MCP setup and verification
-- beginner-friendly troubleshooting
-
-If you are trying to design or maintain a knowledge base, use [`llm-wiki-kb`](../llm-wiki-kb/README.md) instead.
-
-## Start here
-
-1. `docs/mac-terminal-basics.md`
-2. `docs/setup-homebrew.md`
-3. `docs/setup-nodejs.md`
-4. `docs/setup-github-gh-cli.md`
-5. `docs/setup-claude-code-cli.md`
-6. `docs/setup-terminal-mcp.md`
-7. `docs/setup-google-workspace-gws.md`
-
-## What lives here
-
-The docs in this repo are organized around stable workstation setup and troubleshooting:
-
-- basic terminal use
-- installation prerequisites
-- step-by-step setup
-- verification steps
-- plain-language troubleshooting
-
-## Repo boundary
+## 和 `llm-wiki-kb` 的分工
 
 - `flh-claude-toolkit`
-  Owns workstation onboarding and local tooling setup
+  負責工作站設定、工具安裝、MCP、CLI 與 troubleshooting
 - `llm-wiki-kb`
-  Owns knowledge base structure, ingestion, querying, and maintenance workflows
+  負責知識庫結構、資料整理、索引與維護流程
 
-The two repos are related, but they should stay separate.
+簡單說：
+
+- 先把工作站設好，再去經營 wiki
+
+## Repo 邊界
+
+這個 repo 應該維持在：
+
+- 本機環境設定
+- 安裝驗證
+- 使用前置條件
+- 逐步排查
+
+如果你要的是知識庫操作模式，請看：
+
+- [llm-wiki-kb](../llm-wiki-kb/README.md)
