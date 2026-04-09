@@ -70,6 +70,10 @@
 
 如果你只是想讓同仁快速上線，建議優先走路線 A，而不是讓每位同仁自己建一份 Google Cloud 設定。
 
+對 FLH 同仁來說，預設應走 **路線 A**。
+
+如果公司已提供 OAuth client，請不要把 `gws auth setup` 當作一般安裝步驟。`gws auth setup` 比較適合維運者或管理者用來初始化 Google Cloud project / OAuth 設定，不適合每位同仁各自執行。
+
 ## Step By Step 安裝
 
 ### 0. 打開 Terminal / PowerShell
@@ -194,6 +198,26 @@ npm --version
 6. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
 7. 完成授權後，回到 Terminal / PowerShell
 
+### 公司標準做法
+
+對公司同仁，建議把 `gws` 設定收斂成單一路徑：
+
+- 使用公司提供的 `client_secret.json`
+- 將檔案放在 `~/.config/gws/client_secret.json`（Windows 對應 `%USERPROFILE%\\.config\\gws\\client_secret.json`）
+- 執行 `gws auth login`
+- 之後以 `gws auth status` 驗證登入狀態
+
+除非有明確 troubleshooting 需求，否則不要額外設定：
+
+- `GOOGLE_WORKSPACE_CLI_CLIENT_ID`
+- `GOOGLE_WORKSPACE_CLI_CLIENT_SECRET`
+- `GOOGLE_OAUTH_CREDENTIALS`
+- `GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE`
+
+也不要把 `gcloud auth application-default login` 當作 `gws` 的必要安裝步驟。
+
+原因是：如果同一台電腦同時存在 `gws` 自己的 OAuth 設定、shell 環境變數，以及 `gcloud` 的 Application Default Credentials（ADC），實際 API request 可能會受到舊的 Google Cloud 設定影響，導致 `gws auth status` 顯示的 project 跟錯誤訊息要求你 enable 的 project 不一致。
+
 ### 路線 B：自己建立 OAuth client
 
 如果公司還沒有提供共用 OAuth client，請先完成這些步驟：
@@ -216,7 +240,26 @@ gws auth login
 
 ## 驗證 gws 是否能正常使用
 
-登入後，先跑一個最小測試：
+登入後，先做 preflight：
+
+```bash
+gws auth status
+```
+
+請至少確認：
+
+- `client_config_exists: true`
+- `token_valid: true`
+- `user` 是你的公司帳號
+- `project_id` 是公司指定 project
+
+目前公司標準安裝預期的 `project_id` 應為：
+
+```text
+gen-lang-client-0301108841
+```
+
+確認 status 正常後，再跑一個最小測試：
 
 ```bash
 gws drive files list --params '{"pageSize": 3}'
@@ -225,6 +268,69 @@ gws drive files list --params '{"pageSize": 3}'
 如果有回傳 JSON 結果，代表 `gws` 已經可以工作。
 
 如果你目前只需要 Gmail，也可以請 agent 幫你用比較小範圍的 scope 重新登入。
+
+## 如果錯誤訊息指向一個你沒設定過的 project
+
+如果你看到類似下面這種錯誤：
+
+```text
+Google Drive API has not been used in project <some-other-project> before or it is disabled
+```
+
+而 `<some-other-project>` 不是你在 `client_secret.json` 或 `gws auth status` 看到的 project，通常代表這台電腦還有其他 Google 認證設定正在影響 `gws`。
+
+建議依序檢查：
+
+1. `gws auth status`
+2. shell / PowerShell 是否有額外的 `GOOGLE_*` 或 `GWS_*` 環境變數
+3. 是否存在舊的 `gcloud` ADC 設定
+
+**macOS：**
+
+```bash
+gws auth status
+env | rg '^GOOGLE|^GWS'
+cat ~/.config/gcloud/application_default_credentials.json
+```
+
+**Windows（PowerShell）：**
+
+```powershell
+gws auth status
+Get-ChildItem Env: | Where-Object { $_.Name -match '^(GOOGLE|GWS)' }
+Get-Content "$env:APPDATA\gcloud\application_default_credentials.json"
+```
+
+如果 `application_default_credentials.json` 內出現：
+
+```json
+"quota_project_id": "某個不是公司標準的 project"
+```
+
+代表這台電腦上的 `gcloud` ADC 可能正在干擾 `gws` request routing / quota project。
+
+### 建議修復順序
+
+如果你不需要在這台電腦上保留 `gcloud` ADC，建議先清掉它，再重新做 `gws` 登入：
+
+```bash
+gcloud auth application-default revoke
+gws auth logout
+gws auth login
+```
+
+如果你需要保留 `gcloud`，但要讓它和公司標準 `gws` project 對齊，可改成：
+
+```bash
+gcloud auth application-default set-quota-project gen-lang-client-0301108841
+```
+
+做完後，再重新驗證：
+
+```bash
+gws auth status
+gws drive files list --params '{"pageSize": 3}'
+```
 
 ## Step By Step 把 gws 接到 Claude Desktop App
 
