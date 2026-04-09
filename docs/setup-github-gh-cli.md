@@ -1,6 +1,6 @@
 # GitHub gh CLI Setup Guide
 
-這份文件用來協助公司同事在 Mac 上安裝 GitHub 官方的 `gh` CLI。
+這份文件用來協助公司同事在 macOS 或 Windows 上安裝 GitHub 官方的 `gh` CLI。
 
 `gh` 是 GitHub 進階操作工具，不是這個 repo 的必要安裝項目。
 
@@ -41,25 +41,10 @@ gh --version
 
 ## 安裝前提
 
-建議你先完成：
+建議你先完成 Terminal / PowerShell 基本操作：
 
-- [mac-terminal-basics.md](mac-terminal-basics.md)
-
-如果你前面已經裝好 Homebrew，會比較方便。
-
-## 建議安裝方式
-
-對大多數 Mac 使用者，建議優先用 Homebrew 安裝：
-
-```bash
-brew install gh
-```
-
-如果你的 Mac 還沒有 Homebrew，就先把錯誤訊息貼回 agent，請它帶你補安裝。
-
-如果你的電腦還沒有 Homebrew，先看：
-
-- [setup-homebrew.md](setup-homebrew.md)
+- Mac：[mac-terminal-basics.md](mac-terminal-basics.md)
+- Windows：[windows-terminal-basics.md](windows-terminal-basics.md)
 
 ## Step By Step 安裝
 
@@ -73,9 +58,9 @@ gh --version
 
 如果有版本號，就可以直接跳到後面的登入或進階使用。
 
-### 2. 安裝 `gh`
+### 2. macOS：安裝 `gh`
 
-執行：
+對大多數 Mac 使用者，建議優先用 Homebrew：
 
 ```bash
 brew install gh
@@ -84,6 +69,24 @@ brew install gh
 安裝完成後，請再檢查一次：
 
 ```bash
+gh --version
+```
+
+如果你的電腦還沒有 Homebrew，先看：
+
+- [setup-homebrew.md](setup-homebrew.md)
+
+### 2. Windows：安裝 `gh`
+
+使用 `winget`：
+
+```powershell
+winget install --id GitHub.cli
+```
+
+安裝完成後，重新打開 PowerShell，再檢查一次：
+
+```powershell
 gh --version
 ```
 
@@ -153,11 +156,17 @@ gh repo view slee124565/llm-wiki-kb
 gh --version
 ```
 
-### `brew: command not found`
+### `brew: command not found`（macOS）
 
 代表這台 Mac 還沒有 Homebrew。
 
-這時不要自己亂找安裝方式，直接把錯誤訊息貼回 agent，請它一步一步帶你安裝 Homebrew，再回來裝 `gh`。
+直接把錯誤訊息貼回 agent，請它帶你安裝 Homebrew，再回來裝 `gh`。
+
+### `winget: command not found`（Windows）
+
+先確認 Windows 版本是否支援 winget（Windows 10 1709 以上），再看：
+
+- [setup-winget.md](setup-winget.md)
 
 ### `gh auth status` 顯示未登入
 
@@ -184,7 +193,7 @@ gh auth login
 如果你想讓 Claude、Codex 或其他 agent 帶你安裝，可以直接貼這段：
 
 ```text
-請幫我在這台 Mac 上安裝 GitHub `gh` CLI，並確認我可以用它做 GitHub 進階操作。
+請幫我在這台電腦上安裝 GitHub `gh` CLI，並確認我可以用它做 GitHub 進階操作。
 我是非工程使用者，對 Terminal 不熟。
 
 請用繁體中文一步一步帶我做，而且每一步都要：

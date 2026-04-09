@@ -29,26 +29,20 @@
 
 依 Anthropic 官方文件，Claude Code 需要：
 
-- macOS 10.15+
+- macOS 10.15+ 或 Windows 10/11
 - 網路連線
 - Claude 帳號
 
-官方安裝方式有兩種：
-
-- `npm install -g @anthropic-ai/claude-code`
-- `curl -fsSL https://claude.ai/install.sh | bash`
-
-對第一次接觸 CLI 的 Mac 使用者，建議先用官方安裝 script。
-
 ## Step By Step 安裝
 
-### 0. 打開 Terminal
+### 0. 打開 Terminal / PowerShell
 
-先讀 [mac-terminal-basics.md](mac-terminal-basics.md)。
+- Mac：先讀 [mac-terminal-basics.md](mac-terminal-basics.md)
+- Windows：先讀 [windows-terminal-basics.md](windows-terminal-basics.md)
 
 ### 1. 檢查是否已安裝
 
-在 Terminal 執行：
+執行：
 
 ```bash
 claude --version
@@ -56,9 +50,9 @@ claude --version
 
 如果有顯示版本號，代表已安裝，可以直接跳到「登入與第一次啟動」。
 
-如果看到 `command not found`，繼續下一步。
+如果看到 `command not found` 或「無法辨識」，繼續下一步。
 
-### 2. 安裝 Claude Code CLI
+### 2. macOS：安裝 Claude Code CLI
 
 執行官方安裝指令：
 
@@ -70,6 +64,26 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 ```bash
 claude --version
+```
+
+### 2. Windows：安裝 Claude Code CLI
+
+在 PowerShell 執行官方安裝指令：
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+安裝完成後，重新打開 PowerShell，再跑一次：
+
+```powershell
+claude --version
+```
+
+如果偏好用 `winget` 安裝（需手動更新）：
+
+```powershell
+winget install Anthropic.ClaudeCode
 ```
 
 ### 3. 進入你的 repo

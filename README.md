@@ -2,14 +2,16 @@
 
 這是 FLH 內部的 Claude 工作站工具文件庫。
 
-它的目的不是教你設計知識庫，而是幫你把一台 Mac 準備成公司同事可用的 Claude 工作環境，包含 GUI app、必要 CLI 工具與 MCP 整合。
+支援：**macOS** 與 **Windows**
+
+它的目的不是教你設計知識庫，而是幫你把一台電腦準備成公司同事可用的 Claude 工作環境，包含 GUI app、必要 CLI 工具與 MCP 整合。
 
 ## 你什麼時候該用這個 repo
 
 當你遇到的是這類問題時，先來這裡：
 
-- Terminal 還不熟
-- 不確定 Mac 上有沒有 `git`
+- Terminal / PowerShell 還不熟
+- 不確定電腦上有沒有 `git`
 - 工具還沒裝好
 - `command not found`
 - Claude Desktop App 還沒裝好
@@ -32,9 +34,10 @@
 
 ## 先從哪裡開始
 
-如果你是第一次接觸這套工作流，先讀：
+如果你是第一次接觸這套工作流：
 
-- [QUICKSTART.md](QUICKSTART.md)
+- **Mac 用戶** → [QUICKSTART.md](QUICKSTART.md)
+- **Windows 用戶** → [windows-quickstart.md](windows-quickstart.md)
 
 如果你已經知道自己要裝什麼工具，直接看：
 
@@ -54,20 +57,10 @@
 
 ## 建議安裝主線
 
-對多數公司同事，建議照這條標準路徑完成：
+完整線性步驟與最後驗收：
 
-1. 熟悉 Terminal 基本操作
-2. 確認 `git` CLI 可用
-3. 安裝 Homebrew
-4. 安裝 Node.js
-5. 安裝 Claude Desktop App
-6. 安裝 Claude Code CLI
-7. 安裝 Google Workspace `gws`
-8. 設定 terminal / MCP
-
-`gh` CLI 不在這條主線裡。
-
-完整線性步驟與最後驗收，請以 [QUICKSTART.md](QUICKSTART.md) 為準。
+- **Mac 用戶** → [QUICKSTART.md](QUICKSTART.md)
+- **Windows 用戶** → [windows-quickstart.md](windows-quickstart.md)
 
 如果你只是要 clone public GitHub repo，`git clone` 就夠用；只有在要做 private repo、PR、issue 或其他 GitHub 進階操作時，才需要再裝 `gh`。
 

@@ -1,6 +1,6 @@
 # Git CLI Setup Guide
 
-這份文件用來協助公司同事先確認 Mac 上是否已具備 `git` CLI。
+這份文件用來協助公司同事確認電腦上是否已具備 `git` CLI。
 
 `git` 是本機版本控制與 clone public GitHub repo 的基礎工具。
 
@@ -8,17 +8,15 @@
 
 ## 先做什麼檢查
 
-打開 Terminal，執行：
+打開 Terminal（Mac）或 PowerShell（Windows），執行：
 
 ```bash
 git --version
 ```
 
-如果有顯示版本號，代表這台 Mac 已可使用 `git`。
+如果有顯示版本號，代表這台電腦已可使用 `git`。
 
-如果 macOS 跳出要你安裝 Command Line Tools，表示系統正在引導你補齊 `git`。
-
-如果看到 `command not found` 或其他錯誤，再照下面步驟處理。
+如果看到 `command not found` 或「無法辨識」，再照下面步驟處理。
 
 ## 為什麼先檢查 `git`
 
@@ -41,7 +39,7 @@ git --version
 
 如果看到版本號，可以直接跳到後面的最小驗收。
 
-### 2. 如果 macOS 跳出安裝視窗
+### 2. macOS：如果系統跳出安裝視窗
 
 有些 Mac 第一次執行 `git --version`，會跳出系統視窗，要求安裝 Apple Command Line Tools。
 
@@ -53,7 +51,23 @@ git --version
 4. 重新打開 Terminal
 5. 再執行一次 `git --version`
 
-### 3. 如果沒有跳出視窗，但 `git` 仍不可用
+### 2. Windows：安裝 Git for Windows
+
+1. 用瀏覽器前往 Git for Windows 官方網站下載安裝檔
+2. 執行 installer，安裝選項建議保持預設：
+   - 勾選「Add Git to PATH」（確保 PowerShell 可以找到 git）
+   - Git Bash 可選，不影響 PowerShell 使用
+3. 安裝完成後，完全關掉 PowerShell
+4. 重新打開 PowerShell
+5. 執行：
+
+```powershell
+git --version
+```
+
+應該看到版本號。
+
+### 3. 如果 `git` 仍不可用
 
 先把完整錯誤訊息貼回 agent。
 

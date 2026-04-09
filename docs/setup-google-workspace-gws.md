@@ -1,6 +1,6 @@
 # Google Workspace gws CLI + MCP Setup Guide
 
-這份文件用來協助非工程同仁在 Mac 上安裝 Google Workspace 官方團隊維護的 `gws` CLI，並把它接到 Claude Desktop App。
+這份文件用來協助非工程同仁在 macOS 或 Windows 上安裝 Google Workspace 官方團隊維護的 `gws` CLI，並把它接到 Claude Desktop App。
 
 完成後，Claude Desktop App 可以透過 MCP 使用 Google Workspace 工具，例如：
 
@@ -72,9 +72,10 @@
 
 ## Step By Step 安裝
 
-### 0. 打開 Terminal
+### 0. 打開 Terminal / PowerShell
 
-先讀 [mac-terminal-basics.md](mac-terminal-basics.md)。
+- Mac：先讀 [mac-terminal-basics.md](mac-terminal-basics.md)
+- Windows：先讀 [windows-terminal-basics.md](windows-terminal-basics.md)
 
 ### 1. 檢查是否已安裝
 
@@ -86,9 +87,9 @@ gws --version
 
 如果有顯示版本號，代表已安裝，可以跳到「登入」。
 
-如果看到 `command not found`，繼續下一步。
+如果看到 `command not found` 或「無法辨識」，繼續下一步。
 
-### 2. 安裝 gws CLI
+### 2. macOS：安裝 gws CLI
 
 對多數 Mac 使用者，建議優先用 Homebrew：
 
@@ -102,19 +103,33 @@ brew install googleworkspace-cli
 gws --version
 ```
 
-如果你的電腦沒有 Homebrew，也可以請 agent 先帶你安裝 Homebrew，或改用官方 npm 安裝：
+如果你的電腦還沒有 Homebrew，先看：
+
+- [setup-homebrew.md](setup-homebrew.md)
+
+或改用 npm 安裝（需先確認 Node.js 已裝好）：
 
 ```bash
 npm install -g @googleworkspace/cli
 ```
 
-如果你的電腦還沒有 Homebrew，先看：
+### 2. Windows：安裝 gws CLI
 
-- [setup-homebrew.md](setup-homebrew.md)
+Windows 上建議用 npm 安裝（Homebrew 不適用）：
 
-如果你打算用 npm 安裝，請先確認：
+```powershell
+npm install -g @googleworkspace/cli
+```
 
-```bash
+安裝後再檢查一次：
+
+```powershell
+gws --version
+```
+
+如果 `npm` 不可用，先確認 Node.js 是否安裝完成：
+
+```powershell
 node --version
 npm --version
 ```
@@ -128,62 +143,56 @@ npm --version
 ### 路線 A：公司已提供 OAuth client
 
 1. 取得公司提供的 `client_secret.json`
-2. 在 Terminal 建立設定資料夾：
+2. 建立設定資料夾：
 
-```bash
-mkdir -p ~/.config/gws
-```
+   **macOS（Terminal）：**
+
+   ```bash
+   mkdir -p ~/.config/gws
+   ```
+
+   **Windows（PowerShell）：**
+
+   ```powershell
+   New-Item -ItemType Directory -Path "$env:USERPROFILE\.config\gws" -Force
+   ```
 
 3. 把 `client_secret.json` 放到：
 
-```text
-~/.config/gws/client_secret.json
-```
+   - macOS：`~/.config/gws/client_secret.json`
+   - Windows：`%USERPROFILE%\.config\gws\client_secret.json`
 
-如果你不熟 Terminal，可用下面任一種方式：
+   **macOS Finder 方式**（不熟 Terminal 者）：
+   1. 在 Finder 上方選單點 `Go` -> `Go to Folder...`，輸入 `~/.config/gws`，按 Enter
+   2. 把公司提供的 JSON 檔拖進資料夾，並改名為 `client_secret.json`
 
-- 方式 1：用 Finder 放檔
-  1. 在 Finder 上方選單點 `Go` -> `Go to Folder...`
-  2. 輸入：
+   **Windows File Explorer 方式**：
+   1. 在 File Explorer 地址列輸入 `%USERPROFILE%\.config\gws`，按 Enter
+   2. 把公司提供的 JSON 檔拖進資料夾，並改名為 `client_secret.json`
+   3. 若資料夾不存在，先執行上面的 PowerShell 指令建立
 
-  ```text
-  ~/.config/gws
-  ```
+4. 確認檔案在正確位置：
 
-  3. 按 Enter
-  4. 把公司提供的 JSON 檔拖進這個資料夾
-  5. 如果檔名不是 `client_secret.json`，請改名成 `client_secret.json`
+   **macOS：**
 
-- 方式 2：用 Terminal 複製檔案
-  1. 先把公司提供的 JSON 檔放到 `Downloads` 資料夾
-  2. 在 Terminal 執行：
+   ```bash
+   ls -l ~/.config/gws/client_secret.json
+   ```
 
-  ```bash
-  cp ~/Downloads/<公司提供的檔名>.json ~/.config/gws/client_secret.json
-  ```
+   **Windows：**
 
-  3. 例如，如果下載的檔名是 `flh-gws-oauth.json`，指令會是：
-
-  ```bash
-  cp ~/Downloads/flh-gws-oauth.json ~/.config/gws/client_secret.json
-  ```
-
-4. 確認檔案真的在正確位置：
-
-```bash
-ls -l ~/.config/gws/client_secret.json
-```
-
-如果有看到檔案資訊，代表位置正確。
+   ```powershell
+   dir "$env:USERPROFILE\.config\gws\client_secret.json"
+   ```
 
 5. 執行登入：
 
-```bash
-gws auth login
-```
+   ```bash
+   gws auth login
+   ```
 
 6. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
-7. 完成授權後，回到 Terminal
+7. 完成授權後，回到 Terminal / PowerShell
 
 ### 路線 B：自己建立 OAuth client
 
@@ -195,25 +204,9 @@ gws auth login
 4. 把你自己的公司帳號加到 `Test users`
 5. 建立一個 `Desktop app` OAuth client
 6. 下載 JSON
-7. 在 Terminal 建立設定資料夾：
-
-```bash
-mkdir -p ~/.config/gws
-```
-
-8. 把下載的 JSON 存到：
-
-```text
-~/.config/gws/client_secret.json
-```
-
-9. 可用這個指令確認檔案位置正確：
-
-```bash
-ls -l ~/.config/gws/client_secret.json
-```
-
-10. 執行：
+7. 建立設定資料夾（macOS / Windows 分別見路線 A 步驟 2）
+8. 把下載的 JSON 存到 `client_secret.json`（路徑見路線 A 步驟 3）
+9. 確認位置正確後，執行：
 
 ```bash
 gws auth login
@@ -237,17 +230,15 @@ gws drive files list --params '{"pageSize": 3}'
 
 ### 1. 找到 Claude Desktop 設定檔
 
-macOS 路徑：
+設定檔路徑：
 
-```text
-~/Library/Application Support/Claude/claude_desktop_config.json
-```
-
-如果檔案還不存在，可以建立一個新的。
+- macOS：`~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows：`%APPDATA%\Claude\claude_desktop_config.json`
 
 如果你不知道怎麼打開這個位置、建立檔案，或已經有別的 MCP server 不知道怎麼合併，先看：
 
-- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Mac：[edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Windows：[edit-claude-desktop-config-windows.md](edit-claude-desktop-config-windows.md)
 
 ### 2. 先決定要暴露哪些服務
 
@@ -299,11 +290,20 @@ macOS 路徑：
 }
 ```
 
-如果 Claude Desktop 重開後找不到 `claude` 或 `gws`，先在 Terminal 執行：
+如果 Claude Desktop 重開後找不到 `claude` 或 `gws`，先確認指令路徑：
+
+**macOS：**
 
 ```bash
 which claude
 which gws
+```
+
+**Windows：**
+
+```powershell
+Get-Command claude
+Get-Command gws
 ```
 
 再把設定檔裡的 `command` 改成完整路徑。

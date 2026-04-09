@@ -45,11 +45,12 @@ npx --version
 
 ## Step By Step 安裝
 
-### 0. 先熟悉 Terminal
+### 0. 先熟悉 Terminal / PowerShell
 
-如果你還不熟 Terminal，先看：
+如果你還不熟操作介面，先看：
 
-- [mac-terminal-basics.md](mac-terminal-basics.md)
+- Mac：[mac-terminal-basics.md](mac-terminal-basics.md)
+- Windows：[windows-terminal-basics.md](windows-terminal-basics.md)
 
 ### 1. 檢查是否已安裝
 
@@ -63,15 +64,33 @@ npx --version
 
 如果都有版本號，可以直接結束這份文件。
 
-### 2. 安裝 Node.js
+### 2. macOS：安裝 Node.js
 
-請用瀏覽器打開 Node.js 官方網站，下載 Mac 版 `LTS` installer。
+請用瀏覽器打開 Node.js 官方網站，下載 **macOS** 版 `LTS` installer（`.pkg` 格式）。
 
 安裝完成後，請：
 
 1. 完全關掉目前的 Terminal 視窗
 2. 重新打開 Terminal
 3. 再執行一次版本檢查
+
+### 2. Windows：安裝 Node.js
+
+請用瀏覽器打開 Node.js 官方網站，下載 **Windows** 版 `LTS` installer（`.msi` 格式）。
+
+安裝完成後，請：
+
+1. 完全關掉目前的 PowerShell 視窗
+2. 重新打開 PowerShell
+3. 再執行一次版本檢查：
+
+```powershell
+node --version
+npm --version
+npx --version
+```
+
+不需要 Homebrew，`.msi` installer 會自動設定好 PATH。
 
 ### 3. 驗證安裝是否正常
 
@@ -85,15 +104,13 @@ npx --version
 
 你至少應該看到三個版本號。
 
-## 如果你偏好 Homebrew
+## 備用安裝方式
 
-如果你的 Mac 已經有 Homebrew，也可以請 agent 帶你用 Homebrew 安裝 Node.js。
-
-但對第一次接觸 Terminal 的使用者，官方 installer 通常更直觀。
-
-如果你的電腦還沒有 Homebrew，先看：
+**macOS**：如果你的 Mac 已經有 Homebrew，也可以請 agent 帶你用 Homebrew 安裝 Node.js。對第一次接觸 Terminal 的使用者，官方 installer 通常更直觀。
 
 - [setup-homebrew.md](setup-homebrew.md)
+
+**Windows**：官方 `.msi` installer 是最直觀的方式，不建議使用其他替代安裝法。
 
 ## 安裝成功後，下一步去哪裡
 

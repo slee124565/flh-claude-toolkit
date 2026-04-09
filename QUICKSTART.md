@@ -1,6 +1,8 @@
-# QUICKSTART
+# QUICKSTART（macOS）
 
-這份文件給第一次使用 `flh-claude-toolkit` 的同仁。
+這份文件給第一次使用 `flh-claude-toolkit` 的 Mac 同仁。
+
+Windows 用戶請看：[windows-quickstart.md](windows-quickstart.md)
 
 目標只有一個：
 

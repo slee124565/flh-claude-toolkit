@@ -18,12 +18,10 @@
 
 ## 先做什麼檢查
 
-先確認你的 Mac 上是否已安裝 Claude Desktop App。
+確認電腦上是否已安裝 Claude Desktop App：
 
-你可以用這兩種方式檢查：
-
-1. 在 Spotlight 搜尋 `Claude`
-2. 打開 Claude Desktop App，確認可以正常啟動
+- **macOS**：在 Spotlight 搜尋 `Claude`
+- **Windows**：按 `Windows 鍵`，搜尋 `Claude`
 
 如果已能正常打開並登入 Claude 帳號，可以先繼續後面的 CLI 與 MCP 文件。
 
@@ -31,11 +29,17 @@
 
 ### 1. 下載 Claude Desktop App
 
-請從 Anthropic 官方網站下載 macOS 版 Claude Desktop App。
+請從 Anthropic 官方網站下載對應作業系統的安裝檔：
+
+- **macOS**：下載 `.dmg` 或 `.pkg`
+- **Windows**：下載 `.exe` installer
 
 ### 2. 安裝 App
 
-依 macOS 一般 App 安裝方式完成安裝，並把 App 放到 `Applications`。
+**macOS**：依 macOS 一般 App 安裝方式完成安裝，並把 App 放到 `Applications`。
+
+**Windows**：執行下載的 `.exe` installer，依畫面指示完成安裝。
+安裝完成後，Claude Desktop App 會出現在開始選單。
 
 ### 3. 第一次啟動
 
@@ -68,7 +72,8 @@
 
 ### 不知道自己有沒有裝過 Claude Desktop App
 
-先用 Spotlight 搜尋 `Claude`。
+- macOS：用 Spotlight 搜尋 `Claude`
+- Windows：按 `Windows 鍵` 搜尋 `Claude`
 
 如果找不到，代表大概率尚未安裝。
 
@@ -89,7 +94,7 @@
 如果你想讓 Claude、Codex 或其他 agent 陪你確認這一步，可以直接貼這段：
 
 ```text
-請幫我確認這台 Mac 是否已裝好 Claude Desktop App，並帶我完成最小驗收。
+請幫我確認這台電腦是否已裝好 Claude Desktop App，並帶我完成最小驗收。
 我是非工程使用者，對 Terminal 不熟。
 
 請用繁體中文一步一步帶我做，而且每一步都要：

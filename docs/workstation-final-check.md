@@ -28,7 +28,9 @@
 
 ## 第一組：CLI 是否就緒
 
-請在 Terminal 逐條檢查：
+請在 Terminal（Mac）或 PowerShell（Windows）逐條檢查：
+
+**macOS：**
 
 ```bash
 git --version
@@ -40,12 +42,26 @@ claude --version
 gws --version
 ```
 
+**Windows：**
+
+```powershell
+git --version
+winget --version
+node --version
+npm --version
+npx --version
+claude --version
+gws --version
+```
+
 如果某個指令失敗，請回對應文件：
 
 - `git`：
   [setup-git-cli.md](setup-git-cli.md)
-- `brew`：
+- `brew`（macOS）：
   [setup-homebrew.md](setup-homebrew.md)
+- `winget`（Windows）：
+  [setup-winget.md](setup-winget.md)
 - `node` / `npm` / `npx`：
   [setup-nodejs.md](setup-nodejs.md)
 - `claude`：
@@ -93,13 +109,19 @@ gws drive files list --params '{"pageSize": 3}'
 
 先確認：
 
-1. `claude_desktop_config.json` 已存在
+1. `claude_desktop_config.json` 已存在（路徑依 OS 不同）
 2. 你要用的 server 已寫進 `mcpServers`
 3. Claude Desktop 已完整退出再重開
 
+設定檔路徑：
+
+- macOS：`~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows：`%APPDATA%\Claude\claude_desktop_config.json`
+
 如果你不確定怎麼檢查或合併設定，先看：
 
-- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Mac：[edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Windows：[edit-claude-desktop-config-windows.md](edit-claude-desktop-config-windows.md)
 
 ## 第六組：最小工作流驗收
 

@@ -59,15 +59,15 @@ claude --version
 
 ### 2. 找到 Claude Desktop 設定檔
 
-macOS 路徑：
+設定檔路徑依作業系統不同：
 
-```text
-~/Library/Application Support/Claude/claude_desktop_config.json
-```
+- **macOS**：`~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**：`%APPDATA%\Claude\claude_desktop_config.json`
 
 如果你不知道怎麼打開這個位置、建立檔案，或已經有別的 MCP server 不知道怎麼合併，先看：
 
-- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Mac：[edit-claude-desktop-config.md](edit-claude-desktop-config.md)
+- Windows：[edit-claude-desktop-config-windows.md](edit-claude-desktop-config-windows.md)
 
 ### 3. 把 Claude Code MCP server 加進設定檔
 
