@@ -7,16 +7,16 @@
 - core setup
   - [mac-terminal-basics.md](mac-terminal-basics.md)
   - [setup-git-cli.md](setup-git-cli.md)
-  - [setup-homebrew.md](setup-homebrew.md)
   - [setup-nodejs.md](setup-nodejs.md)
   - [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
-- required work tools
-  - [setup-claude-code-cli.md](setup-claude-code-cli.md)
-  - [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
-- optional advanced tools
+- optional tools and integrations
+  - [setup-claude-code-cli.md](setup-claude-code-cli.md)（給需要用 Claude Code CLI 協助工作的同仁）
+  - [setup-homebrew.md](setup-homebrew.md)
+  - [setup-google-workspace-gws.md](setup-google-workspace-gws.md)（給需要在 Claude Code TUI 使用 Google Workspace 的同仁）
+  - [setup-google-sheets-mcp.md](setup-google-sheets-mcp.md)（給需要在 Claude Desktop GUI 編輯 Google Sheets 的同仁）
   - [setup-github-gh-cli.md](setup-github-gh-cli.md)
 - MCP
-  - [setup-terminal-mcp.md](setup-terminal-mcp.md)
+  - [setup-terminal-mcp.md](setup-terminal-mcp.md)（給想把 Claude Code 接進 Claude Desktop 的進階使用者）
   - [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
 - verification
   - [workstation-final-check.md](workstation-final-check.md)

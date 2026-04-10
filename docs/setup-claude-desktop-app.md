@@ -4,7 +4,7 @@
 
 對非工程同仁來說，這通常是最自然的 Claude 使用入口。
 
-後面的 `Claude Code CLI`、`gws` CLI 與 MCP 設定，都是在這個基礎上往外擴充能力。
+後面的 `Claude Code CLI`、`gws` CLI 與 MCP 設定，都是在這個基礎上往外擴充能力。這些都屬於進階選配，不是每位同仁都需要先裝。
 
 ## 先確認你為什麼要先裝這個
 
@@ -12,7 +12,7 @@
 
 - 在 GUI 裡和 Claude 對話
 - 用 Claude Desktop 接公司工具
-- 讓 Claude 之後可以看到本機或 Google Workspace 工具
+- 讓 Claude 之後可以看到本機工具
 
 那就應該先完成 Claude Desktop App。
 
@@ -29,14 +29,18 @@
 
 ### 1. 下載 Claude Desktop App
 
-請從 Anthropic 官方網站下載對應作業系統的安裝檔：
+請在瀏覽器輸入 `claude.ai`，進入官方網站後找到 `Download` 頁面，再下載對應作業系統的安裝檔：
 
 - **macOS**：下載 `.dmg` 或 `.pkg`
 - **Windows**：下載 `.exe` installer
 
 ### 2. 安裝 App
 
-**macOS**：依 macOS 一般 App 安裝方式完成安裝，並把 App 放到 `Applications`。
+**macOS**：
+
+- 如果你下載的是 `.dmg`，先雙擊打開，等視窗出現後，把 `Claude` App 拖進 `Applications`
+- 拖完後，退出該安裝視窗，再到 `Applications` 找 `Claude`
+- 如果你下載的是 `.pkg`，雙擊後依畫面指示完成安裝
 
 **Windows**：執行下載的 `.exe` installer，依畫面指示完成安裝。
 安裝完成後，Claude Desktop App 會出現在開始選單。
@@ -61,11 +65,13 @@
 
 - 補齊本機 repo 基礎能力：
   [setup-git-cli.md](setup-git-cli.md)
-- 安裝 Claude Code CLI：
+- 如果你需要用 Claude Code CLI 協助工作，再安裝 Claude Code CLI：
   [setup-claude-code-cli.md](setup-claude-code-cli.md)
-- 安裝 Google Workspace `gws`：
+- 如果你要在 `Claude Code` TUI 使用 Google Workspace，再安裝 `gws`：
   [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
-- 設定 Claude Desktop 裡的 terminal / MCP：
+- 如果你要在 Claude Desktop 直接編輯 Google Sheets，再安裝 Google Sheets MCP：
+  [setup-google-sheets-mcp.md](setup-google-sheets-mcp.md)
+- 如果你要把 Claude Code 接進 Claude Desktop，再設定 terminal / MCP：
   [setup-terminal-mcp.md](setup-terminal-mcp.md)
 
 ## 常見問題

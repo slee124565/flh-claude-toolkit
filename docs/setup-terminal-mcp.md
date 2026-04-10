@@ -86,7 +86,7 @@ claude --version
 }
 ```
 
-如果你已經有別的 MCP server，例如 `gws`，就把它們一起放在同一個 `mcpServers` 物件裡。
+如果你已經有別的 MCP server，就把它們一起放在同一個 `mcpServers` 物件裡。
 
 例如：
 
@@ -99,9 +99,9 @@ claude --version
       "args": ["mcp", "serve"],
       "env": {}
     },
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-terminal"]
     }
   }
 }

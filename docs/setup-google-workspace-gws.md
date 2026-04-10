@@ -1,8 +1,8 @@
-# Google Workspace gws CLI + MCP Setup Guide
+# Google Workspace gws CLI Setup Guide
 
-這份文件用來協助非工程同仁在 macOS 或 Windows 上安裝 Google Workspace 官方團隊維護的 `gws` CLI，並把它接到 Claude Desktop App。
+這份文件用來協助需要使用 `Claude Code` TUI 的同仁，在 macOS 或 Windows 上安裝 Google Workspace 官方團隊維護的 `gws` CLI。
 
-完成後，Claude Desktop App 可以透過 MCP 使用 Google Workspace 工具，例如：
+完成後，你可以在 `Claude Code` TUI 裡使用 Google Workspace 工具，例如：
 
 - Google Drive
 - Gmail
@@ -10,16 +10,28 @@
 - Sheets
 - Docs
 
+這份文件不處理 `Claude Desktop` 的 MCP 整合。就目前這個 repo 的標準路線來說，`gws` 不是直接給 Claude Desktop 用的方案。
+
 ## 這份 setup 的目的
 
 對公司同仁來說，Google Workspace 是共通工作環境。
 
-如果你只把文件下載到本機，Claude 當然還是可以整理，但你會少掉很多直接操作能力。裝好 `gws` 之後，agent 可以在權限範圍內幫你做更多事，例如：
+如果你已經在用 `Claude Code` TUI，裝好 `gws` 之後，agent 可以在權限範圍內幫你做更多事，例如：
 
 - 找 Google Drive 文件
 - 讀 Gmail thread
 - 讀 Calendar 行程
 - 協助把 Google Workspace 裡的內容回收到本地知識庫
+
+## 先確認你是否真的需要裝 `gws`
+
+建議符合以下條件再安裝：
+
+- 你平常會使用 `Claude Code` TUI，而不是只用 Claude Desktop GUI
+- 你真的需要讀取 Gmail、Drive、Calendar 或其他 Google Workspace 資料
+- 你已向雲端服務管理者申請 GCP OAuth Client 憑證
+
+如果你只是需要本機 repo 操作，或只用 Claude Desktop GUI，通常不需要先裝 `gws`。
 
 ## 官方前提
 
@@ -27,38 +39,59 @@
 
 - 需要 Node.js 18+ 才能用 `npm install`
 - 也可以直接用 GitHub Releases 的預編譯 binary
-- macOS 可使用 Homebrew：`brew install googleworkspace-cli`
+- macOS 也可使用 Homebrew：`brew install googleworkspace-cli`
 - OAuth 需要 Google Cloud project 與對應 credentials
 
 在這個 repo 的標準安裝順序裡，建議先確認：
 
-- [setup-homebrew.md](setup-homebrew.md)
 - [setup-nodejs.md](setup-nodejs.md)
-- [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
+- [setup-claude-code-cli.md](setup-claude-code-cli.md)
 
-官方 MCP 文件另外說明：
+如果你在 Mac 想把 Homebrew 當成備用安裝方式，也可以先看：
 
-- Claude Desktop 的設定檔在 macOS 路徑是：
-  `~/Library/Application Support/Claude/claude_desktop_config.json`
-- `gws mcp` 可用 `-s` 指定要暴露哪些服務
-- 建議從少量服務開始，避免超過 MCP client 的 tool limit
+- [setup-homebrew.md](setup-homebrew.md)
+
+## 公司標準做法
+
+對公司同仁，建議把 `gws` 設定收斂成單一路徑：
+
+1. 向雲端服務管理者申請 GCP OAuth Client 憑證
+2. 取得公司提供的 `client_secret.json`
+3. 將檔案放在 `~/.config/gws/client_secret.json`
+   Windows 對應 `%USERPROFILE%\\.config\\gws\\client_secret.json`
+4. 執行 `gws auth login`
+5. 之後以 `gws auth status` 驗證登入狀態
+
+除非有明確 troubleshooting 需求，否則不要額外設定：
+
+- `GOOGLE_WORKSPACE_CLI_CLIENT_ID`
+- `GOOGLE_WORKSPACE_CLI_CLIENT_SECRET`
+- `GOOGLE_OAUTH_CREDENTIALS`
+- `GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE`
+
+也不要把 `gcloud auth application-default login` 當作 `gws` 的必要安裝步驟。
+
+原因是：如果同一台電腦同時存在 `gws` 自己的 OAuth 設定、shell 環境變數，以及 `gcloud` 的 Application Default Credentials（ADC），實際 API request 可能會受到舊的 Google Cloud 設定影響，導致 `gws auth status` 顯示的 project 跟錯誤訊息要求你 enable 的 project 不一致。
 
 ## 先決定你要走哪條登入路線
 
 ### 路線 A：公司已提供 OAuth client
 
-這是最適合團隊 rollout 的方式。
+這是目前最適合團隊 rollout 的方式。
 
 你只需要：
 
 1. 安裝 `gws`
-2. 把公司提供的 OAuth client JSON 放到指定位置
-3. 執行 `gws auth login`
-4. 在瀏覽器登入你的公司帳號
+2. 向雲端服務管理者申請 GCP OAuth Client 憑證
+3. 把公司提供的 OAuth client JSON 放到指定位置
+4. 執行 `gws auth login`
+5. 在瀏覽器登入你的公司帳號
+
+這裡提到的 GCP OAuth Client 憑證，實際上通常會以 `client_secret.json` 形式提供。
 
 ### 路線 B：自己建立 OAuth 設定
 
-這適合測試或個人 proof of concept。
+這只適合維運者、管理者或 PoC 情境。
 
 你需要：
 
@@ -68,7 +101,7 @@
 4. 下載 `client_secret.json`
 5. 執行 `gws auth login`
 
-如果你只是想讓同仁快速上線，建議優先走路線 A，而不是讓每位同仁自己建一份 Google Cloud 設定。
+如果你只是一般同仁，請不要自己建立 OAuth client，先向雲端服務管理者申請。
 
 對 FLH 同仁來說，預設應走 **路線 A**。
 
@@ -95,10 +128,12 @@ gws --version
 
 ### 2. macOS：安裝 gws CLI
 
-對多數 Mac 使用者，建議優先用 Homebrew：
+這個 repo 的建議主線是優先用 `npm` 安裝，因為 `brew` 在這裡是 optional 工具，不是必要前提。
+
+先執行：
 
 ```bash
-brew install googleworkspace-cli
+npm install -g @googleworkspace/cli
 ```
 
 安裝後再檢查一次：
@@ -107,19 +142,19 @@ brew install googleworkspace-cli
 gws --version
 ```
 
+如果你的 Mac 已經有 Homebrew，而且你偏好用 Homebrew 管理 CLI，也可以改用：
+
+```bash
+brew install googleworkspace-cli
+```
+
 如果你的電腦還沒有 Homebrew，先看：
 
 - [setup-homebrew.md](setup-homebrew.md)
 
-或改用 npm 安裝（需先確認 Node.js 已裝好）：
-
-```bash
-npm install -g @googleworkspace/cli
-```
-
 ### 2. Windows：安裝 gws CLI
 
-Windows 上建議用 npm 安裝（Homebrew 不適用）：
+Windows 上建議用 npm 安裝：
 
 ```powershell
 npm install -g @googleworkspace/cli
@@ -146,7 +181,7 @@ npm --version
 
 ### 路線 A：公司已提供 OAuth client
 
-1. 取得公司提供的 `client_secret.json`
+1. 向雲端服務管理者取得 GCP OAuth Client 憑證，也就是公司提供的 `client_secret.json`
 2. 建立設定資料夾：
 
    **macOS（Terminal）：**
@@ -166,7 +201,7 @@ npm --version
    - macOS：`~/.config/gws/client_secret.json`
    - Windows：`%USERPROFILE%\.config\gws\client_secret.json`
 
-   **macOS Finder 方式**（不熟 Terminal 者）：
+   **macOS Finder 方式**：
    1. 在 Finder 上方選單點 `Go` -> `Go to Folder...`，輸入 `~/.config/gws`，按 Enter
    2. 把公司提供的 JSON 檔拖進資料夾，並改名為 `client_secret.json`
 
@@ -189,38 +224,38 @@ npm --version
    dir "$env:USERPROFILE\.config\gws\client_secret.json"
    ```
 
-5. 執行登入：
+5. Windows 如遇到執行權限問題，先調整 PowerShell execution policy
+
+   有些 Windows 電腦在執行 `gws auth login` 前，會先卡在 PowerShell 的執行權限。
+
+   如果你遇到這種情況，請先用系統管理員身份開啟 PowerShell：
+
+   1. 按 `Windows 鍵`
+   2. 搜尋 `PowerShell`
+   3. 看到 `Windows PowerShell` 後，不要直接點開
+   4. 對它按右鍵，選擇「以系統管理員身份執行」
+   5. 如果出現確認視窗，按「是」
+
+   開啟後，執行：
+
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+   完成後，再回來重新執行 `gws auth login`。
+
+6. 執行登入：
 
    ```bash
    gws auth login
    ```
 
-6. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
-7. 完成授權後，回到 Terminal / PowerShell
-
-### 公司標準做法
-
-對公司同仁，建議把 `gws` 設定收斂成單一路徑：
-
-- 使用公司提供的 `client_secret.json`
-- 將檔案放在 `~/.config/gws/client_secret.json`（Windows 對應 `%USERPROFILE%\\.config\\gws\\client_secret.json`）
-- 執行 `gws auth login`
-- 之後以 `gws auth status` 驗證登入狀態
-
-除非有明確 troubleshooting 需求，否則不要額外設定：
-
-- `GOOGLE_WORKSPACE_CLI_CLIENT_ID`
-- `GOOGLE_WORKSPACE_CLI_CLIENT_SECRET`
-- `GOOGLE_OAUTH_CREDENTIALS`
-- `GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE`
-
-也不要把 `gcloud auth application-default login` 當作 `gws` 的必要安裝步驟。
-
-原因是：如果同一台電腦同時存在 `gws` 自己的 OAuth 設定、shell 環境變數，以及 `gcloud` 的 Application Default Credentials（ADC），實際 API request 可能會受到舊的 Google Cloud 設定影響，導致 `gws auth status` 顯示的 project 跟錯誤訊息要求你 enable 的 project 不一致。
+7. 瀏覽器會開啟登入頁面，請使用你的公司 Google 帳號登入
+8. 完成授權後，回到 Terminal / PowerShell
 
 ### 路線 B：自己建立 OAuth client
 
-如果公司還沒有提供共用 OAuth client，請先完成這些步驟：
+如果你是維運者，或公司還沒有提供共用 OAuth client，請先完成這些步驟：
 
 1. 到 Google Cloud Console 建立或選擇 project
 2. 開啟 OAuth consent screen
@@ -332,98 +367,12 @@ gws auth status
 gws drive files list --params '{"pageSize": 3}'
 ```
 
-## Step By Step 把 gws 接到 Claude Desktop App
+## 在 Claude Code TUI 內做最小驗收
 
-### 1. 找到 Claude Desktop 設定檔
-
-設定檔路徑：
-
-- macOS：`~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows：`%APPDATA%\Claude\claude_desktop_config.json`
-
-如果你不知道怎麼打開這個位置、建立檔案，或已經有別的 MCP server 不知道怎麼合併，先看：
-
-- Mac：[edit-claude-desktop-config.md](edit-claude-desktop-config.md)
-- Windows：[edit-claude-desktop-config-windows.md](edit-claude-desktop-config-windows.md)
-
-### 2. 先決定要暴露哪些服務
-
-官方文件建議從少量服務開始，避免工具太多。
-
-對大多數知識庫 / 業務同仁，建議先從這個組合開始：
-
-- `drive`
-- `gmail`
-- `calendar`
-
-### 3. 寫入 MCP 設定
-
-把設定檔改成這樣：
-
-```json
-{
-  "mcpServers": {
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
-    }
-  }
-}
-```
-
-如果你也想把 Claude Code 自己的工具一起接進 Claude Desktop，可以用下面這個合併範例。
-
-更完整的 `Claude Code as MCP server` 說明，請以這份為準：
-
-- [setup-terminal-mcp.md](setup-terminal-mcp.md)
-
-合併範例：
-
-```json
-{
-  "mcpServers": {
-    "claude-code": {
-      "type": "stdio",
-      "command": "claude",
-      "args": ["mcp", "serve"],
-      "env": {}
-    },
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
-    }
-  }
-}
-```
-
-如果 Claude Desktop 重開後找不到 `claude` 或 `gws`，先確認指令路徑：
-
-**macOS：**
-
-```bash
-which claude
-which gws
-```
-
-**Windows：**
-
-```powershell
-Get-Command claude
-Get-Command gws
-```
-
-再把設定檔裡的 `command` 改成完整路徑。
-
-### 4. 完全關閉再重開 Claude Desktop App
-
-設定檔修改後，請完全退出 Claude Desktop App，再重新打開。
-
-### 5. 做最小驗收
-
-在 Claude Desktop App 裡可以測試問：
+完成登入後，可以在 `Claude Code` TUI 內測試問：
 
 ```text
-請列出我最近的 Google Drive 檔案，並告訴我哪些可能適合匯入 llm-wiki-kb。
+請先確認我這台電腦上的 gws 是否可用，並列出我最近的 Google Drive 檔案。
 ```
 
 或：
@@ -432,34 +381,27 @@ Get-Command gws
 請幫我整理今天 Gmail 最近幾封重要信件的重點。
 ```
 
-## 建議的服務範圍
-
-先從小範圍開始，不要一開始就用 `all`。
-
-- 輕量版：`drive,gmail`
-- 平衡版：`drive,gmail,calendar`
-- 進階版：`drive,gmail,calendar,sheets,docs`
+如果 Claude Code 可以正常透過 `gws` 幫你執行查詢，代表這條路線大致可用。
 
 ## Agent-Assisted 安裝 Prompt
 
 如果你已經有 Claude、Codex 或 Gemini 可以協助你，可以直接貼這段：
 
 ```text
-我要在 Mac 上安裝 Google Workspace 的 gws CLI，並把它接到 Claude Desktop App。
+我要在 Mac 上安裝 Google Workspace 的 gws CLI，並在 Claude Code TUI 裡使用。
 我對 Terminal 不熟，請用繁體中文一步一步帶我做。
 
 請遵守以下方式：
 1. 每一步先叫我執行一個檢查或安裝指令
 2. 等我貼出結果後，再告訴我下一步
 3. 如果要修改設定檔，請先告訴我檔案路徑、再給我完整內容
-4. 優先使用最少服務數量的 MCP 設定，不要一開始就暴露全部工具
+4. 如果需要 OAuth 憑證，先提醒我向雲端服務管理者申請
 
 我的驗收目標是：
 - `gws --version` 成功
 - `gws auth login` 完成
 - `gws drive files list --params '{"pageSize": 3}'` 可用
-- Claude Desktop App 已加入 `gws` MCP server
-- 我可以在 Claude Desktop 裡問到 Drive 或 Gmail 資料
+- 我可以在 Claude Code TUI 裡問到 Drive 或 Gmail 資料
 ```
 
 ## 常見問題
@@ -472,15 +414,24 @@ Get-Command gws
 
 通常代表 OAuth consent screen 沒有把你加到 Test users，或公司提供的 OAuth client 還沒設定好。
 
-### Claude Desktop 裡看不到工具
+### Windows 上出現執行權限或 script policy 問題
+
+如果你在 Windows 執行 `gws auth login` 前後，遇到 PowerShell 執行權限相關錯誤，先用系統管理員身份開啟 PowerShell，然後執行：
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+做完後，重新開一個 PowerShell 視窗，再試一次 `gws auth login`。
+
+### Claude Code 裡無法使用 Google Workspace
 
 先檢查三件事：
 
-1. `claude_desktop_config.json` 格式是否正確
-2. `gws` 指令在 Terminal 是否能正常執行
-3. Claude Desktop App 是否有完全重開
+1. `gws auth status` 是否正常
+2. `gws` 指令在 Terminal / PowerShell 是否能正常執行
+3. `client_secret.json` 是否放在正確位置
 
 如果你還是不確定問題在哪裡，回頭先看：
 
-- [edit-claude-desktop-config.md](edit-claude-desktop-config.md)
 - [workstation-final-check.md](workstation-final-check.md)

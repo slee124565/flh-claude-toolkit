@@ -74,7 +74,7 @@ npx --version
 2. 重新打開 Terminal
 3. 再執行一次版本檢查
 
-### 2. Windows：安裝 Node.js
+### 3. Windows：安裝 Node.js
 
 請用瀏覽器打開 Node.js 官方網站，下載 **Windows** 版 `LTS` installer（`.msi` 格式）。
 
@@ -92,7 +92,7 @@ npx --version
 
 不需要 Homebrew，`.msi` installer 會自動設定好 PATH。
 
-### 3. 驗證安裝是否正常
+### 4. 驗證安裝是否正常
 
 執行：
 
@@ -116,6 +116,8 @@ npx --version
 
 如果你接下來要：
 
+- 安裝 Claude Desktop App：
+  [setup-claude-desktop-app.md](setup-claude-desktop-app.md)
 - 安裝 Claude Code CLI：
   [setup-claude-code-cli.md](setup-claude-code-cli.md)
 - 安裝 Google Workspace `gws` CLI：
@@ -165,7 +167,7 @@ npm --version
 如果你想讓 Claude、Codex 或其他 agent 一步一步帶你安裝，可以直接貼這段：
 
 ```text
-我要先把這台 Mac 的 Node.js 環境裝好，因為後面還要裝 Claude Code CLI 與其他 Node 工具。
+我要先把這台 Mac 的 Node.js 環境裝好，因為後面的工作站工具會用到它。
 我是非工程使用者，對 Terminal 不熟。
 
 請用繁體中文一步一步帶我完成，而且每一步都要：

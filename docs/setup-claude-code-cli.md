@@ -165,7 +165,7 @@ claude
 1. 目前資料夾是否正確
 2. Claude Code 是否正常
 3. Claude Desktop App 是否已可使用這個 repo
-4. 如果已安裝 gws，是否能再告訴我下一步怎麼接到 Claude Desktop
+4. 如果已安裝 gws，是否能再告訴我怎麼在 Claude Code TUI 裡使用它
 請用繁體中文，一次只給我一個檢查步驟。
 ```
 

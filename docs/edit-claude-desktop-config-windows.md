@@ -107,9 +107,9 @@ New-Item -ItemType Directory -Path "$env:APPDATA\Claude" -Force
 ```json
 {
   "mcpServers": {
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-terminal"]
     }
   }
 }
@@ -126,9 +126,9 @@ New-Item -ItemType Directory -Path "$env:APPDATA\Claude" -Force
       "args": ["mcp", "serve"],
       "env": {}
     },
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-terminal"]
     }
   }
 }
@@ -143,8 +143,8 @@ New-Item -ItemType Directory -Path "$env:APPDATA\Claude" -Force
 ```json
 {
   "mcpServers": {
-    "gws": {
-      "command": "gws"
+    "terminal": {
+      "command": "npx"
     }
   },
   "mcpServers": {
@@ -183,11 +183,10 @@ New-Item -ItemType Directory -Path "$env:APPDATA\Claude" -Force
 3. `command` 對應的 CLI 在 PowerShell 能不能執行
 4. Claude Desktop App 是否真的有完整重開
 
-如果 `command` 寫的是 `claude`、`gws`、`npx`，可以在 PowerShell 測試：
+如果 `command` 寫的是 `claude`、`npx`，可以在 PowerShell 測試：
 
 ```powershell
 Get-Command claude
-Get-Command gws
 Get-Command npx
 ```
 
@@ -197,7 +196,9 @@ Get-Command npx
 
 - 如果你要把 `Claude Code` 接進 Claude Desktop：
   [setup-terminal-mcp.md](setup-terminal-mcp.md)
-- 如果你要把 `gws` 接進 Claude Desktop：
+- 如果你要在 Claude Desktop 使用 Google Sheets MCP：
+  [setup-google-sheets-mcp.md](setup-google-sheets-mcp.md)
+- 如果你要在 `Claude Code` TUI 使用 `gws`：
   [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
 - 如果你要做整條主線的最後驗收：
   [workstation-final-check.md](workstation-final-check.md)

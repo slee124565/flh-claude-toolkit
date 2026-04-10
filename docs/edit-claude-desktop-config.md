@@ -87,9 +87,9 @@ open ~/Library/Application\ Support/Claude
 ```json
 {
   "mcpServers": {
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-terminal"]
     }
   }
 }
@@ -106,9 +106,9 @@ open ~/Library/Application\ Support/Claude
       "args": ["mcp", "serve"],
       "env": {}
     },
-    "gws": {
-      "command": "gws",
-      "args": ["mcp", "-s", "drive,gmail,calendar"]
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-terminal"]
     }
   }
 }
@@ -125,8 +125,8 @@ open ~/Library/Application\ Support/Claude
 ```json
 {
   "mcpServers": {
-    "gws": {
-      "command": "gws"
+    "terminal": {
+      "command": "npx"
     }
   },
   "mcpServers": {
@@ -168,14 +168,12 @@ open ~/Library/Application\ Support/Claude
 如果 `command` 寫的是：
 
 - `claude`
-- `gws`
 - `npx`
 
 可以先在 Terminal 測試：
 
 ```bash
 which claude
-which gws
 which npx
 ```
 
@@ -185,7 +183,9 @@ which npx
 
 - 如果你要把 `Claude Code` 接進 Claude Desktop：
   [setup-terminal-mcp.md](setup-terminal-mcp.md)
-- 如果你要把 `gws` 接進 Claude Desktop：
+- 如果你要在 Claude Desktop 使用 Google Sheets MCP：
+  [setup-google-sheets-mcp.md](setup-google-sheets-mcp.md)
+- 如果你要在 `Claude Code` TUI 使用 `gws`：
   [setup-google-workspace-gws.md](setup-google-workspace-gws.md)
 - 如果你要做整條主線的最後驗收：
   [workstation-final-check.md](workstation-final-check.md)

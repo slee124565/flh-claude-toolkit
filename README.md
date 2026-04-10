@@ -23,13 +23,14 @@
 
 - Terminal 基本操作
 - Git CLI
-- Homebrew
 - Node.js
 - Claude Desktop App
-- GitHub `gh` CLI
-- Claude Code CLI
-- MCP 設定
-- Google Workspace `gws` CLI / MCP
+- GitHub `gh` CLI（選配）
+- Claude Code CLI（進階選配）
+- MCP 設定（進階選配）
+- Homebrew（選配）
+- Google Workspace `gws` CLI（選配，供 Claude Code TUI 同仁）
+- Google Sheets MCP（選配，供 Claude Desktop GUI 同仁）
 - 安裝驗收與 troubleshooting 文件
 
 ## 先從哪裡開始
@@ -63,6 +64,8 @@
 - **Windows 用戶** → [windows-quickstart.md](windows-quickstart.md)
 
 如果你只是要 clone public GitHub repo，`git clone` 就夠用；只有在要做 private repo、PR、issue 或其他 GitHub 進階操作時，才需要再裝 `gh`。
+
+對多數同仁來說，`brew`、`gws` 與 Google Sheets MCP 都不是最小可用工作站的必要條件。`brew` 是方便管理 Mac CLI 工具的選配；`gws` 是給需要在 `Claude Code` TUI 中操作 Google Workspace 的同仁使用，且需先向雲端服務管理者申請 GCP OAuth Client 憑證；Google Sheets MCP 則是給主要在 Claude Desktop GUI 中直接編輯少量個人 Google Sheets 檔案的同仁使用。
 
 ## Repo 邊界
 
